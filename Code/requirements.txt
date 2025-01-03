@@ -88,7 +88,7 @@ torch
 tqdm
 typing_extensions
 urllib3
-#vizdoom
+vizdoom
 Werkzeug
 wrapt
 yarl
