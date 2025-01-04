@@ -125,6 +125,7 @@ class Game(AbstractGame):
     def __init__(self, seed=None):
         self.game = DoomGame()
         self.game.load_config("basic.cfg")
+        self.game.set_window_visible(False)
         # self.game.set_doom_scenario_path("basic.wad")
         if seed is not None:
             self.game.set_seed(seed)
