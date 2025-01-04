@@ -5,7 +5,7 @@ if [ ! -d venv ]; then
 	echo "venv created"
 	echo "Start of installing python packages"
 	source venv/bin/activate
-	pip install -r requirements.txt
+	pip install -r requirements_3.10.txt
 	deactivate
 	echo "End of installing python packages"
 else
