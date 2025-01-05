@@ -19,7 +19,7 @@ class MuZeroConfig:
 
 
         ### Game
-        self.observation_shape = (320, 60, 80)  # Dimensions of the game observation, must be 3D (channel, height, width). For a 1D array, please reshape it to (1, 1, length of array)
+        self.observation_shape = (160, 60, 80)  # Dimensions of the game observation, must be 3D (channel, height, width). For a 1D array, please reshape it to (1, 1, length of array)
         self.action_space = list(range(3))  # Fixed list of all possible actions. You should only edit the length
         self.players = list(range(1))  # List of players. You should only edit the length
         self.stacked_observations = 0  # Number of previous observations and previous actions to add to the current observation
@@ -126,11 +126,12 @@ class Game(AbstractGame):
         self.game = DoomGame()
         self.game.load_config("basic.cfg")
         self.game.set_window_visible(False)
+        self.game.set_screen_resolution(ScreenResolution.RES_160X120)
         # self.game.set_doom_scenario_path("basic.wad")
         if seed is not None:
             self.game.set_seed(seed)
         self.game.init()
-        self.observation_shape = (320, 60, 80)
+        self.observation_shape = (160, 60, 80)
         self.action_space = [  # Definicja akcji
             [1, 0, 0],  # Strzał
             [0, 1, 0],  # Ruch w lewo
