@@ -19,7 +19,7 @@ class MuZeroConfig:
 
 
         ### Game
-        self.observation_shape = (320, 120, 160)  # Dimensions of the game observation, must be 3D (channel, height, width). For a 1D array, please reshape it to (1, 1, length of array)
+        self.observation_shape = (320, 60, 80)  # Dimensions of the game observation, must be 3D (channel, height, width). For a 1D array, please reshape it to (1, 1, length of array)
         self.action_space = list(range(3))  # Fixed list of all possible actions. You should only edit the length
         self.players = list(range(1))  # List of players. You should only edit the length
         self.stacked_observations = 0  # Number of previous observations and previous actions to add to the current observation
@@ -34,7 +34,7 @@ class MuZeroConfig:
         self.num_workers = 1  # Number of simultaneous threads/workers self-playing to feed the replay buffer
         self.selfplay_on_gpu = True
         self.max_moves = 2500  # Maximum number of moves if game is not finished before
-        self.num_simulations = 30  # Number of future moves self-simulated
+        self.num_simulations = 10  # Number of future moves self-simulated
         self.discount = 0.997  # Chronological discount of the reward
         self.temperature_threshold = None  # Number of moves before dropping the temperature given by visit_softmax_temperature_fn to 0 (ie selecting the best action). If None, visit_softmax_temperature_fn is used every time
 
@@ -50,24 +50,24 @@ class MuZeroConfig:
 
         ### Network
         self.network = "resnet"  # "resnet" / "fullyconnected"
-        self.support_size = 10  # Value and reward are scaled (with almost sqrt) and encoded on a vector with a range of -support_size to support_size. Choose it so that support_size <= sqrt(max(abs(discounted reward)))
+        self.support_size = 5  # Value and reward are scaled (with almost sqrt) and encoded on a vector with a range of -support_size to support_size. Choose it so that support_size <= sqrt(max(abs(discounted reward)))
 
         # Residual Network
         self.downsample = "resnet"  # Downsample observations before representation network, False / "CNN" (lighter) / "resnet" (See paper appendix Network Architecture)
-        self.blocks = 2  # Number of blocks in the ResNet
-        self.channels = 16  # Number of channels in the ResNet
-        self.reduced_channels_reward = 4  # Number of channels in reward head
-        self.reduced_channels_value = 4  # Number of channels in value head
-        self.reduced_channels_policy = 4  # Number of channels in policy head
-        self.resnet_fc_reward_layers = [16]  # Define the hidden layers in the reward head of the dynamic network
-        self.resnet_fc_value_layers = [16]  # Define the hidden layers in the value head of the prediction network
-        self.resnet_fc_policy_layers = [16]  # Define the hidden layers in the policy head of the prediction network
+        self.blocks = 1  # Number of blocks in the ResNet
+        self.channels = 8  # Number of channels in the ResNet
+        self.reduced_channels_reward = 2  # Number of channels in reward head
+        self.reduced_channels_value = 2  # Number of channels in value head
+        self.reduced_channels_policy = 2  # Number of channels in policy head
+        self.resnet_fc_reward_layers = [8]  # Define the hidden layers in the reward head of the dynamic network
+        self.resnet_fc_value_layers = [8]  # Define the hidden layers in the value head of the prediction network
+        self.resnet_fc_policy_layers = [8]  # Define the hidden layers in the policy head of the prediction network
 
         # Fully Connected Network
         self.encoding_size = 10
         self.fc_representation_layers = []  # Define the hidden layers in the representation network
-        self.fc_dynamics_layers = [16]  # Define the hidden layers in the dynamics network
-        self.fc_reward_layers = [16]  # Define the hidden layers in the reward network
+        self.fc_dynamics_layers = [8]  # Define the hidden layers in the dynamics network
+        self.fc_reward_layers = [8]  # Define the hidden layers in the reward network
         self.fc_value_layers = []  # Define the hidden layers in the value network
         self.fc_policy_layers = []  # Define the hidden layers in the policy network
 
@@ -94,7 +94,7 @@ class MuZeroConfig:
 
 
         ### Replay Buffer
-        self.replay_buffer_size = int(1e6)  # Number of self-play games to keep in the replay buffer
+        self.replay_buffer_size = int(1e4)  # Number of self-play games to keep in the replay buffer
         self.num_unroll_steps = 5  # Number of game moves to keep for every batch element
         self.td_steps = 10  # Number of steps in the future to take into account for calculating the target value
         self.PER = True  # Prioritized Replay (See paper appendix Training), select in priority the elements in the replay buffer which are unexpected for the network
@@ -130,7 +130,7 @@ class Game(AbstractGame):
         if seed is not None:
             self.game.set_seed(seed)
         self.game.init()
-        self.observation_shape = (320, 120, 160)
+        self.observation_shape = (320, 60, 80)
         self.action_space = [  # Definicja akcji
             [1, 0, 0],  # Strzał
             [0, 1, 0],  # Ruch w lewo
@@ -190,7 +190,7 @@ class Game(AbstractGame):
             Processed observation as a NumPy array.
         """
         state = self.game.get_state().screen_buffer
-        observation = cv2.resize(state, (160, 120), interpolation=cv2.INTER_AREA)
+        observation = cv2.resize(state, (80, 60), interpolation=cv2.INTER_AREA)
         observation = np.asarray(observation, dtype=np.float32) / 255.0
         observation = np.moveaxis(observation, -1, 0)  # Rearrange channels to (C, H, W)
         return observation
