@@ -479,7 +479,7 @@ class MuZero:
         dm.close_all()
 
 
-@ray.remote(num_cpus=0, num_gpus=1)
+@ray.remote(num_cpus=24, num_gpus=0)
 class CPUActor:
     # Trick to force DataParallel to stay on CPU to get weights on CPU even if there is a GPU
     def __init__(self):
