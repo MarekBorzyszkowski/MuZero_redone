@@ -24,7 +24,7 @@ class MuZeroConfig:
 
 
         ### Game
-        self.observation_shape = (3, 96, 96)  # Dimensions of the game observation, must be 3D (channel, height, width). For a 1D array, please reshape it to (1, 1, length of array)
+        self.observation_shape = (1, 96, 96)  # Dimensions of the game observation, must be 3D (channel, height, width). For a 1D array, please reshape it to (1, 1, length of array)
         self.action_space = list(range(4))  # Fixed list of all possible actions. You should only edit the length
         self.players = list(range(1))  # List of players. You should only edit the length
         self.stacked_observations = 0  # Number of previous observations and previous actions to add to the current observation
@@ -155,9 +155,11 @@ class Game(AbstractGame):
             The new observation, the reward and a boolean if the game has ended.
         """
         observation, reward, done, _ = self.env.step(action)
+        observation = cv2.cvtColor(observation, cv2.COLOR_RGB2GRAY)
         observation = cv2.resize(observation, (96, 96), interpolation=cv2.INTER_AREA)
         observation = numpy.asarray(observation, dtype="float32") / 255.0
-        observation = numpy.moveaxis(observation, -1, 0)
+        observation = numpy.expand_dims(observation, axis=0)
+        cv2.imshow("djy", observation)
         return observation, reward, done
 
     def legal_actions(self):
@@ -181,9 +183,10 @@ class Game(AbstractGame):
             Initial observation of the game.
         """
         observation = self.env.reset()
+        observation = cv2.cvtColor(observation, cv2.COLOR_RGB2GRAY)
         observation = cv2.resize(observation, (96, 96), interpolation=cv2.INTER_AREA)
         observation = numpy.asarray(observation, dtype="float32") / 255.0
-        observation = numpy.moveaxis(observation, -1, 0)
+        observation = numpy.expand_dims(observation, axis=0)
         return observation
 
     def close(self):
