@@ -1,0 +1,90 @@
+\documentclass[polish,aspectratio=169]{beamer}
+
+% \input{modules/embed_video.tex}
+
+% wide screen
+% \documentclass[aspectratio=169]{beamer}
+
+
+%%% YOUR PACKAGES HERE %%%
+\usepackage{comment}
+\usepackage{hyperref}
+\usepackage[backend=biber, style=numeric, bibstyle=ieee,
+            sorting=none, isbn=false, urldate=ymd,
+            doi=false, url=true]{biblatex}
+\addbibresource{bibliography/bibliography.bib}
+\renewbibmacro{in:}{}
+\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{media9}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\newcommand{\refrys}[1]{Rys.~\ref{#1}}
+\newcommand{\reflist}[1]{List.~\ref{#1}}
+\newcommand{\refEq}[1]{Równ.~\ref{#1}}
+% \usepackage{tikz} 
+% \usetikzlibrary{graphs,graphs.standard,automata}
+
+
+\definecolor{keywordcolor}{rgb}{0.1,0.1,0.8}
+\definecolor{stringcolor}{rgb}{0.7,0.1,0.1}
+\definecolor{commentcolor}{rgb}{0.3,0.7,0.3}
+\definecolor{backgroundcolor}{rgb}{0.95,0.95,0.95}
+\lstdefinelanguage{FSharp}{
+    keywords={let, match, with, in, function, if, then, else, rec, type, module, open},
+    keywordstyle=\color{keywordcolor}\bfseries,
+    sensitive=true,
+    comment=[l][\color{commentcolor}\itshape]{//},
+    morecomment=[s][\color{commentcolor}\itshape]{(*}{*)},
+    string=[b]",
+    stringstyle=\color{stringcolor},
+    basicstyle=\ttfamily,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    backgroundcolor=\color{backgroundcolor},
+    showstringspaces=false
+}
+\newcommand{\fourImages}[4]{
+    \begin{columns}[t]
+        \column{.5\textwidth}
+            \centering
+            \includegraphics[height=.45\textheight, keepaspectratio]{#1}\\
+            \includegraphics[height=.45\textheight, keepaspectratio]{#2}
+        \column{.5\textwidth}
+            \centering
+            \includegraphics[height=.45\textheight, keepaspectratio]{#3}\\
+            \includegraphics[height=.45\textheight, keepaspectratio]{#4}
+    \end{columns}
+}
+% polish language
+\usepackage[polish]{babel}
+\usepackage{polski}
+
+
+
+%%% IMPORT PG PRESENTATION STYLE %%%
+\include{pgbeamer/pgbeamer}
+
+
+%%% YOUR OPTIONS HERE %%%
+
+\title[Czy na MuZero można odpalić Doom'a?]{Czy na MuZero można odpalić Doom'a?}
+% \subtitle{Jak testować zachowanie, a nie przypadki}
+\author{Paulina Brzęcka \and Marek Borzyszkowski}
+\date{\today}
+
+\setbeamercovered{invisible}
+\begin{document}
+
+\input{sections/0_title_page}
+\input{sections/1_introduction}
+\input{sections/2_experiments_info}
+\input{sections/3_problems}
+\input{sections/4_results}
+\input{sections/5_conclusion}
+\input{sections/references}
+
+\end{document}
