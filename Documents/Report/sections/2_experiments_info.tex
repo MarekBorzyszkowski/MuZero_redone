@@ -1,0 +1,69 @@
+\section{Informacje na temat eksperymentu}
+  \subsection{Literatura}
+    Do zrozumienia problemu wykorzystano następujące pozycje:
+    \begin{enumerate}
+      \item \url{https://arxiv.org/pdf/1911.08265}
+      \item \url{https://www.youtube.com/watch?v=c8SLNEpFSrs}
+    \end{enumerate}
+
+  \subsection{Przydatne repozytoria}
+    Przykładowe implementacje MuZero:
+    \begin{enumerate}
+      \item \url{https://github.com/johan-gras/MuZero}
+      \item \url{https://github.com/opendilab/LightZero}
+      \item \url{https://github.com/werner-duvaud/muzero-general}
+    \end{enumerate}
+    Środowiska:
+    \begin{enumerate}
+      \item \url{https://github.com/Farama-Foundation/Arcade-Learning-Environment}
+      \item \url{https://paperswithcode.com/dataset/dqn-replay-dataset}
+      \item \url{https://github.com/clvrai/awesome-rl-envs}
+      \item \url{https://github.com/Farama-Foundation/ViZDoom}
+    \end{enumerate}
+   
+  \subsection{Framework}
+    Do powtórzenia eksperymentu będziemy korzystać z 
+    \begin{enumerate}
+      \item pytorch
+      \item opencv
+      \item numpy
+      \item ray
+    \end{enumerate}
+
+  \subsection{Co będzie przedmiotem eksperymentu}
+    Przeprowadzenie testów na 
+    \begin{enumerate}
+      \item test na prostych środowiskach,
+      \item test na atari,
+      \item test na doom'ie.
+    \end{enumerate}
+
+  \subsection{Metryki i baseline}
+    
+      
+        Wyuczenie agentów do poziomu przeciętnego człowieka, który grał parę godzin w grę.  
+     
+        \begin{tabular}[H]{||c c||} 
+        \hline
+        Game & Human \\ [0.5ex] 
+        \hline\hline
+        Atlantis & $29028.13$ \\ 
+        \hline
+        Bowling & $160.73$  \\
+        \hline
+        Breakout & $30.47$ \\
+        \hline
+        Crazy climber & $35829.41$  \\
+        \hline
+        Pacman & $6951.60$  \\
+        \hline
+        Pong & $14.59$  \\ [1ex] 
+        \hline
+        \end{tabular}
+
+  \subsection{Sprzęt użyty w testach}
+    Do testów wykorzystano 2 rodzaje komputerów:
+    \begin{enumerate}
+      \item Intel i7 13700k + 32GB ram + Nvidia RTX 4070 Ti,
+      \item Intel i5 4590 + 32GB ram.
+    \end{enumerate}  

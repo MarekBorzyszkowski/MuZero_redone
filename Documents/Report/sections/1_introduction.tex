@@ -1,0 +1,16 @@
+\section{Jak działa MuZero}
+  MuZero działa w oparciu o zaawansowany model uczenia maszynowego, który łączy w sobie planowanie, uczenie się oraz symulację, aby optymalizować podejmowanie decyzji w różnych środowiskach. Kluczowe cechy działania MuZero to:
+  \begin{itemize}
+    \item  Modelowanie wewnętrzne - W przeciwieństwie do wcześniejszych algorytmów (np. AlphaGo czy AlphaZero), MuZero nie wymaga znajomości zasad gry ani pełnego modelu środowiska. Tworzy własną wewnętrzną reprezentację świata na podstawie danych wejściowych.
+    \item Planowanie - MuZero wykorzystuje procesy podobne do wyszukiwania Monte Carlo Tree Search (MCTS), aby symulować różne scenariusze i przewidywać najbardziej korzystne działania. Wykorzystuje przy tym trzy modele:
+    \begin{itemize}
+      \item Model przewidujący wartość bieżącego stanu.
+      \item Model przewidujący nagrodę za przejście w kolejny stan.
+      \item Model przewidujący następny stan na podstawie wykonanej akcji.
+    \end{itemize}
+
+    \item Uczenie się z danych - System uczy się na podstawie danych historycznych oraz symulacji, aby ulepszać swoją strategię i lepiej przewidywać skutki akcji.
+    \item Zastosowanie w różnych środowiskach - Może być stosowany w grach wideo, takich jak Atari, czy w bardziej złożonych środowiskach, takich jak Doom.
+  \end{itemize}
+  \addImage{images/MuZero.png}
+  

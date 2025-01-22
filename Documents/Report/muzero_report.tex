@@ -1,0 +1,89 @@
+\documentclass[polish,10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{polski}
+\usepackage{babel}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{mwe}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\newcommand{\refrys}[1]{Rys.~\ref{#1}}
+\newcommand{\reflist}[1]{List.~\ref{#1}}
+\newcommand{\refEq}[1]{Równ.~\ref{#1}}
+\renewcommand{\lstlistlistingname}{Spis listingów}
+\renewcommand{\listfigurename}{WYKAZ RYSUNKÓW}
+\renewcommand{\listtablename}{WYKAZ TABEL}
+
+\usepackage[backend=biber, style=numeric, bibstyle=ieee,
+        sorting=none, isbn=false, urldate=ymd,
+        doi=false, url=true]{biblatex}
+\addbibresource{bibliography/bibliography.bib}
+\renewbibmacro{in:}{}
+\renewcommand*{\bibfont}{\small}
+\newcommand{\bibliographyname}{WYKAZ LITERATURY}
+
+\definecolor{keywordcolor}{rgb}{0.1,0.1,0.8}
+\definecolor{stringcolor}{rgb}{0.7,0.1,0.1}
+\definecolor{commentcolor}{rgb}{0.3,0.7,0.3}
+\definecolor{backgroundcolor}{rgb}{0.95,0.95,0.95}
+
+\lstdefinelanguage{FSharp}{
+    keywords={let, match, with, in, function, if, then, else, rec, type, module, open},
+    keywordstyle=\color{keywordcolor}\bfseries,
+    sensitive=true,
+    comment=[l][\color{commentcolor}\itshape]{//},
+    morecomment=[s][\color{commentcolor}\itshape]{(*}{*)},
+    string=[b]",
+    stringstyle=\color{stringcolor},
+    basicstyle=\ttfamily,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    backgroundcolor=\color{backgroundcolor},
+    showstringspaces=false
+}
+\newcommand{\addImage}[1]{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.95\textwidth]{#1}
+    \end{figure}
+}
+\newcommand{\fourImages}[3]{
+    \begin{figure}[H]
+        \centering
+        \begin{subfigure}[b]{0.475\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{#1}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.475\textwidth}  
+            \centering 
+            \includegraphics[width=\textwidth]{#2}
+        \end{subfigure}
+        \vskip\baselineskip
+        \begin{subfigure}[b]{0.475\textwidth}   
+            \centering 
+            \includegraphics[width=\textwidth]{#3}
+        \end{subfigure}
+    \end{figure}
+}
+\usepackage[unicode=true]{hyperref}
+
+\title{Czy na MuZero można odpalić Doom'a?}
+\author{Paulina Brzęcka \and Marek Borzyszkowski}
+\date{\today}
+
+\begin{document}
+
+\input{sections/0_title_page}
+\input{sections/1_introduction}
+\input{sections/2_experiments_info}
+\input{sections/3_problems}
+\input{sections/4_results}
+\input{sections/5_conclusion}
+% \input{sections/references}
+
+\end{document}
